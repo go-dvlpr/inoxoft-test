@@ -20,7 +20,8 @@ docker-compose up --build -d
 ```
 
 #### **Key Notes**
-- The application runs on **port 8080**.
+- The application runs on **port 8080** by default.
+- You can change the port by updating the `SERVER_PORT` variable in the `.env` file.
 - The log files are stored in the `logs/logs.log` file, which is shared with the host via a Docker volume.
 
 ---
@@ -39,6 +40,7 @@ make up
 #### **Key Notes**
 - The application requires `Make` for automation.
 - Logs are written to the `logs/logs.log` file in the project directory.
+- You can modify the server port by changing the `SERVER_PORT` variable in the `.env` file.
 
 ---
 
@@ -75,7 +77,6 @@ The following variables can be configured in the `.env` file:
 
 | **Variable**      | **Default Value**         | **Description**                     |
 |-------------------|---------------------------|-------------------------------------|
-| `LOG_FILE_PATH`   | `./logs/logs.log`         | Path to the log file               |
 | `SERVER_PORT`     | `8080`                    | The port where the server runs     |
 
 ---
@@ -96,19 +97,19 @@ curl -X GET http://localhost:8080/jobs/5/logs
 
 ### **2. Get All Logs**
 - **Method:** `GET`
-- **URL:** `http://localhost:8080/jobs/logs`
+- **URL:** `http://localhost:8080/jobs`
 - **Description:** Retrieve all job logs.
 
 #### Example:
 ```bash
-curl -X GET http://localhost:8080/jobs/logs
+curl -X GET http://localhost:8080/jobs
 ```
 
 ---
 
 ### **3. Add a New Job**
 - **Method:** `POST`
-- **URL:** `http://localhost:8080/jobs/logs`
+- **URL:** `http://localhost:8080/jobs`
 - **Description:** Add a new job log entry with a name and duration.
 
 #### Request Body:
@@ -121,12 +122,9 @@ curl -X GET http://localhost:8080/jobs/logs
 
 #### Example:
 ```bash
-curl -X POST http://localhost:8080/jobs/logs \
+curl -X POST http://localhost:8080/jobs \
 -H "Content-Type: application/json" \
--d '{
-  "name": "test",
-  "millisecond_duration": 35000
-}'
+-d '{"name":"test","millisecond_duration":35000}'
 ```
 
 ---
@@ -163,6 +161,7 @@ curl -X POST http://localhost:8080/jobs/logs \
 - Logs are stored in `logs/logs.log`.
 - When using Docker, logs are shared with the host via a volume mounted to the `logs` directory.
 - Multi-stage builds in the Dockerfile ensure a smaller runtime image.
+- The server port can be configured in the `.env` file using the `SERVER_PORT` variable.
 
 ---
 
