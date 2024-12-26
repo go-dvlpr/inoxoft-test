@@ -97,7 +97,7 @@ curl -X GET http://localhost:8080/jobs/5/logs
 
 ### **2. Get All Logs**
 - **Method:** `GET`
-- **URL:** `http://localhost:8080/jobs`
+- **URL:** `http://localhost:8080/jobs/logs`
 - **Description:** Retrieve all job logs.
 
 #### Example:
@@ -150,11 +150,6 @@ curl -X POST http://localhost:8080/jobs \
    make up
    ```
 
-2. Stop the application:
-   ```bash
-   make stop
-   ```
-
 ---
 
 ## **Development Notes**
@@ -182,6 +177,3 @@ curl -X POST http://localhost:8080/jobs \
 5. Create a pull request.
 
 ---
-
-## **License**
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
